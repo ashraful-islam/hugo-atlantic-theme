@@ -4,10 +4,15 @@
 {{ $date := .date }}
 
 <div class="heading py-6 md:py-12 lg:w-10/12 {{ if eq $align "center" }}md:text-center mx-auto{{ end }}">
-  {{ if $date }}
-  {{ $dateFormat := default "Jan 2, 2006" (index site.Params "date_format") }}
-  <div class="font-medium text-gray-700">{{ $date.Format $dateFormat  }}</div>
-  {{ end }}
+  
+  <div class="font-medium text-gray-700">
+    {{ if $date }}
+    {{ $dateFormat := default "Jan 2, 2006" (index site.Params "date_format") }}
+    {{ $date.Format $dateFormat  }} |
+    {{ end }}
+    Reading Time: {{ .ReadingTime }} minute{{ if (ne .ReadingTime 1) }}s{{ end }}
+  </div>
+  
   <h1 class="heading text-4xl md:text-6xl font-bold font-sans md:leading-tight">
     {{ $title | safeHTML }}
   </h1>
